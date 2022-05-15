@@ -47,6 +47,24 @@ public abstract class List<Item> {
         n1.setValue(n2.getValue());
         n2.setValue(temp.getValue());
     }
+    
+    
+    void find(String d){ //recibe un string con formato YY-MM-DD
+        LocalDate date = LocalDate.parse(d);
+        Node<Item> iter = this.head;
+        boolean entered = false;
+        System.out.println("Las actividades para el " +d + " son:\n");
+        while (iter != null){
+            if(((Activity)iter.getValue()).getDate().equals(date)){
+                entered = true;
+                ((Activity)iter.getValue()).print();
+            }
+            iter = iter.next;
+        }
+        if(entered == false){
+            System.out.println("No hay actividades para este dia");
+        }
+    }
 
     // Node<Item> getHead(){
     //     if (head == null){
