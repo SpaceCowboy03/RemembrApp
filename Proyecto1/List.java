@@ -35,10 +35,12 @@ public abstract class List<Item> {
 
 
     void print(){
+  
         Node<Item> iter = this.head;
         while (iter != null){
             ((Activity)iter.getValue()).print();
             iter = iter.next;
+            Activity.contadorDatos +=1;//sroan
         }
     }
 

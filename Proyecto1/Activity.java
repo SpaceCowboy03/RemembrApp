@@ -10,7 +10,9 @@ public class Activity implements Comparator<Activity> {
     LocalTime hour; // formatter
     Priority priority;
     String label; // categoria
-
+    
+    
+    static int contadorDatos =0;//sroan
     public String getName() {
         return name;
     }
@@ -52,8 +54,9 @@ public class Activity implements Comparator<Activity> {
     }
 
     public void print() {
+    	
         System.out.println("Actividad: " + name + " \nFecha: " + date + " Hora: " + hour + " \nPrioridad: " + priority
-                + " \nEtiqueta: " + label);
+                + " \nEtiqueta: " + label+ "      ///numero de dato:"+contadorDatos);
     }
 
     @Override
