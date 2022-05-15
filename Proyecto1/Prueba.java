@@ -46,8 +46,10 @@ public class Prueba {
 
         //calendar.swap(calendar.head, calendar.tail);
 
-        //calendar.print();
-
+        //Prueba find
+        calendar.print();
+        Scanner reader = new Scanner(new InputStreamReader(System.in));
+        calendar.find(reader.nextLine());
 
 
         
