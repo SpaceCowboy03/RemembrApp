@@ -114,15 +114,15 @@ public class Prueba {
         float segundos = milisegundos / 1000;
         
         for(int i=0; i<=100;i++) {	
-        	//provisional= new ToDo(a.getRandomString(50), LocalDate.parse("2022-05-15"), LocalTime.parse("13:00:00"), Priority.URGENTE, "Personal", "Ir el lunes");
-        	calendarprov.pushBack(new ToDo(a.getRandomString(50), LocalDate.parse("2022-05-15"), LocalTime.parse("13:00:00"), Priority.URGENTE, "Personal", "Ir el lunes"));   
+        	provisional=new ToDo (a.getRandomString(50), LocalDate.parse("2022-05-15"), LocalTime.parse("13:00:00"), Priority.URGENTE, "Personal", "Ir el lunes");
+        	calendarprov.pushBack(provisional);   
         	contadorDatos+=1;
         	
         }
         int tamano =calendarprov.size;
         
         for(int j=0;j<tamano;j++) {
-        	calendarprov.remove();
+        	calendarprov.remove(provisional);
         	contadorDatos=contadorDatos-1;
         	System.out.println(" se esta removiendo "+j+ " veces");
         }
