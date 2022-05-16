@@ -1,5 +1,8 @@
 package Proyecto1;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;//sroan
+
 import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -103,7 +106,20 @@ public class Prueba {
        // provisional= new ToDo("diferente", LocalDate.parse("2022-05-15"), LocalTime.parse("13:00:00"), Priority.URGENTE, "Personal", "Ir el lunes");
 
        // System.out.print();
+        List<Activity> objects = new ArrayList<>();
         DoubleLinkedList<Activity> calendarprov = new DoubleLinkedList<>();
+       
+        
+        
+        //generador de objetos aleatorios
+        
+        for (int i = 0; i <= 100001; i++)
+		{
+		objects.add(new ToDo(a.getRandomString(50), LocalDate.parse("2022-05-15"), LocalTime.parse("13:00:00"), Priority.URGENTE, "Personal", "Ir el lunes"));
+		}
+        
+        //
+        
         
         long startTime = 0;
         long endTime = 0;
@@ -113,29 +129,30 @@ public class Prueba {
         long milisegundos = (endTime - startTime) / 1000000;
         float segundos = milisegundos / 1000;
         
-        for(int i=0; i<=100;i++) {	
-        	provisional=new ToDo (a.getRandomString(50), LocalDate.parse("2022-05-15"), LocalTime.parse("13:00:00"), Priority.URGENTE, "Personal", "Ir el lunes");
-        	calendarprov.pushBack(provisional);   
+        for(int i=0; i<=100000;i++) {	
+        	calendarprov.pushBack(new ToDo(a.getRandomString(i), LocalDate.parse("2022-05-15"), LocalTime.parse("13:00:00"), Priority.URGENTE, "Personal", "Ir el lunes"));   
         	contadorDatos+=1;
         	
         }
+        startTime = System.nanoTime();//
+        
+        new OrderedActListHandler<Activity>().order(calendarprov);
+        
+        endTime = System.nanoTime();//
         int tamano =calendarprov.size;
         
-        for(int j=0;j<tamano;j++) {
-        	calendarprov.remove(provisional);
-        	contadorDatos=contadorDatos-1;
-        	System.out.println(" se esta removiendo "+j+ " veces");
-        }
+        
+        
+        
+        
+        
+        System.out.println("despues: ");      
+       
         calendarprov.print();
-        
-  
-        
-        startTime = System.nanoTime();
-       // calendarprov.print();
-        endTime = System.nanoTime();       
+               
         calendarprov=null; //Esto es innecesario pero por si acaso lo dejo
         
-        System.out.println("Tiempo de " + "print " +"en segundos: "+ segundos+" en milisegundos: " + milisegundos+ " inicio: "
+        System.out.println("Tiempo de " + "order " +"en segundos: "+ segundos+" en milisegundos: " + milisegundos+ " inicio: "
         		+ startTime+" final "+endTime+"\n"+"diferencia: "+(long) diferencia);
                
         
