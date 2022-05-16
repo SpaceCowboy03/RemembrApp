@@ -67,7 +67,7 @@ public abstract class List<Item> {
             System.out.println("No hay actividades para este dia");
         }
     }
-    
+    //Find por nombre
     Activity findActivity(String name){ //recibe un string
         
         Node<Item> iter = this.head;

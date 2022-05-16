@@ -248,6 +248,7 @@ public class Menu{
                                         
                                         
                                         break;
+                                        
                                     case 7:
                                         
                                         if(calendar.findActivity(encontrarD).getClass().isAssignableFrom(Event.class)){
