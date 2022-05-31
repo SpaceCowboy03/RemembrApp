@@ -139,7 +139,7 @@ public class Prueba {
         new OrderedActListHandler<Activity>().order(calendarprov);
         
         endTime = System.nanoTime();//
-        int tamano =calendarprov.size;
+        int tamano =calendarprov.size;//
         
         
         
