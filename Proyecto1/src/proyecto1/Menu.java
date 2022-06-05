@@ -185,7 +185,6 @@ public class Menu{
                         
                                 switch(Option){
                                     case 1:
-                                    
                                         System.out.println("Ingrese el nuevo nombre");
                                         Scanner nName = new Scanner(new InputStreamReader(System.in));
                                         newName = nName.nextLine();
