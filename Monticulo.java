@@ -13,12 +13,6 @@ public class Monticulo{
     int[] monticulo;
     int cantElementos;
     int tamaño;
-
-    public Monticulo(int[] monticulo, int cantElementos, int tamaño){
-        this.monticulo = monticulo;
-        this.cantElementos = cantElementos;
-        this.tamaño = tamaño;
-    }
    
     public Monticulo (int cant, int max){
         monticulo = new int[max];
