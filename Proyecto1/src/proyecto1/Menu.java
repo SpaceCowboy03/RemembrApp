@@ -137,7 +137,6 @@ public class Menu{
                 case 3:
                     //Set
                     //Editar actividad
-                    calendar.print();
                     if(calendar.empty()){
                         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                         System.out.println("NO hay actividades para editar");
