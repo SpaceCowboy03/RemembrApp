@@ -137,7 +137,6 @@ public class Menu{
                 case 3:
                     //Set
                     //Editar actividad
-                    calendar.print();
                     if(calendar.empty()){
                         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                         System.out.println("NO hay actividades para editar");
@@ -186,7 +185,6 @@ public class Menu{
                         
                                 switch(Option){
                                     case 1:
-                                    
                                         System.out.println("Ingrese el nuevo nombre");
                                         Scanner nName = new Scanner(new InputStreamReader(System.in));
                                         newName = nName.nextLine();
