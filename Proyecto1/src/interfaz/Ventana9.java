@@ -4,6 +4,10 @@
  */
 package interfaz;
 
+import estructuras.DoubleLinkedList;
+import static interfaz.Sesion.calendar2;
+import proyecto1.Activity;
+
 /**
  *
  * @author Acer
@@ -13,6 +17,12 @@ public class Ventana9 extends javax.swing.JFrame {
     /**
      * Creates new form Ventana9
      */
+    static DoubleLinkedList<Activity> calendar2;
+    public Ventana9(DoubleLinkedList<Activity> calendar) {
+        initComponents();
+        calendar2=calendar;
+
+    }
     public Ventana9() {
         initComponents();
     }
@@ -29,6 +39,8 @@ public class Ventana9 extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        adultButton = new javax.swing.JButton();
+        kidButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +55,24 @@ public class Ventana9 extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/SimboloAutismotransparente1.png"))); // NOI18N
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 510, 230));
+
+        adultButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        adultButton.setText("Adulto");
+        adultButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adultButtonMouseClicked(evt);
+            }
+        });
+        bg.add(adultButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, -1, -1));
+
+        kidButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        kidButton.setText("Niñ@");
+        kidButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kidButtonMouseClicked(evt);
+            }
+        });
+        bg.add(kidButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,6 +91,18 @@ public class Ventana9 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void adultButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adultButtonMouseClicked
+        Sesion s = new Sesion(calendar2);
+        s.setVisible(true);
+        this.setVisible(false); 
+    }//GEN-LAST:event_adultButtonMouseClicked
+
+    private void kidButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kidButtonMouseClicked
+        Ventana5 s = new Ventana5(calendar2,0);
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_kidButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -89,17 +131,20 @@ public class Ventana9 extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        calendar2 = new DoubleLinkedList<>();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana9().setVisible(true);
+                new Ventana9(calendar2).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adultButton;
     private javax.swing.JPanel bg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton kidButton;
     // End of variables declaration//GEN-END:variables
 }
