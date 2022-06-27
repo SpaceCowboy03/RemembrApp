@@ -50,6 +50,7 @@ public class Sesion extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +107,15 @@ public class Sesion extends javax.swing.JFrame {
         });
         bg.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 150, 40));
 
+        backButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        backButton.setText("Volver");
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backButtonMouseClicked(evt);
+            }
+        });
+        bg.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 150, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +131,7 @@ public class Sesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTaskButtonMouseClicked
-        Ventana5 d= new Ventana5 (calendar2);
+        Ventana5 d= new Ventana5 (calendar2,1);
         d.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_listTaskButtonMouseClicked
@@ -143,6 +153,12 @@ public class Sesion extends javax.swing.JFrame {
         g.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_deleteButtonMouseClicked
+
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
+        Ventana9 g= new Ventana9 (calendar2);
+        g.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -553,6 +569,7 @@ public class Sesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JPanel bg;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;

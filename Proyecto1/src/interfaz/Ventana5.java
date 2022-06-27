@@ -17,14 +17,16 @@ import proyecto1.OrderedActListHandler;
 public class Ventana5 extends javax.swing.JFrame {
     
     DoubleLinkedList<Activity> calendar2;
+    int origin;
 
     /**
      * Creates new form Ventana5
      */
     
-    public Ventana5(DoubleLinkedList<Activity> calendar) {
+    public Ventana5(DoubleLinkedList<Activity> calendar, int from) {
         initComponents();
         calendar2=calendar;
+        origin = from;
         new OrderedActListHandler<Activity>().order(calendar2);
         imprimir();
     }    
@@ -120,8 +122,13 @@ public class Ventana5 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
-        Sesion s = new Sesion ();
-        s.setVisible(true);
+        if(origin == 0){
+            Ventana9 s = new Ventana9(calendar2);
+            s.setVisible(true);
+        }else{
+            Sesion s = new Sesion (calendar2);
+            s.setVisible(true);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_backButtonMouseClicked
 
