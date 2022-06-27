@@ -156,7 +156,7 @@ public class Ventana8 extends javax.swing.JFrame {
                 backButtonMouseClicked(evt);
             }
         });
-        bg.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 110, 40));
+        bg.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, 110, 40));
 
         deleteButton.setText("Eliminar");
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -164,7 +164,7 @@ public class Ventana8 extends javax.swing.JFrame {
                 deleteButtonMouseClicked(evt);
             }
         });
-        bg.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 110, 40));
+        bg.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

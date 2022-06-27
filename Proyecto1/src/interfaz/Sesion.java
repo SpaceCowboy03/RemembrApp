@@ -133,7 +133,7 @@ public class Sesion extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonMouseClicked
 
     private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
-        Ventana6 e= new Ventana6 ();
+        Ventana6 e= new Ventana6(calendar2);
         e.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_updateButtonMouseClicked

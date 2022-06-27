@@ -4,6 +4,16 @@
  */
 package interfaz;
 
+import estructuras.DoubleLinkedList;
+import estructuras.DoubleNode;
+import static interfaz.Sesion.calendar2;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import javax.swing.table.DefaultTableModel;
+import proyecto1.Activity;
+import proyecto1.OrderedActListHandler;
+import proyecto1.Priority;
+
 /**
  *
  * @author Acer
@@ -13,6 +23,16 @@ public class Ventana6 extends javax.swing.JFrame {
     /**
      * Creates new form Ventana6
      */
+    
+    DoubleLinkedList<Activity> calendar2;
+    
+    public Ventana6(DoubleLinkedList<Activity> calendar) {
+        initComponents();
+        calendar2 = calendar;
+        new OrderedActListHandler<Activity>().order(calendar2);
+        imprimir(calendar2);
+    }
+    
     public Ventana6() {
         initComponents();
     }
@@ -27,73 +47,88 @@ public class Ventana6 extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
+        filterButton = new javax.swing.JButton();
+        datePicker = new com.github.lgooddatepicker.components.DatePicker();
         jLabel10 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        actTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        IrAtributosMod = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        selectButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setBackground(new java.awt.Color(51, 153, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        filterButton.setText("Filtrar");
+        filterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterButtonMouseClicked(evt);
+            }
+        });
+        bg.add(filterButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, -1, -1));
+        bg.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Seleccione la tarea que quiere modificar:");
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("tarea que quiere modificar:");
-        bg.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 330, 40));
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Escriba el nombre de la ");
-        bg.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 310, 40));
+        bg.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 510, 40));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setEnabled(false);
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 500, 340));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        actTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Actividad", "Fecha", "Hora", "Prioridad", "Etiqueta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        actTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(actTable);
+
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 500, 340));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/SimboloAutismotransparente1.png"))); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 510, 230));
 
-        jTextField1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Cocinar");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        bg.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 140, 40));
-
-        IrAtributosMod.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        IrAtributosMod.addMouseListener(new java.awt.event.MouseAdapter() {
+        selectButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectButton.setText("Seleccionar");
+        selectButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                IrAtributosModMouseClicked(evt);
+                selectButtonMouseClicked(evt);
             }
         });
+        bg.add(selectButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 530, 130, 30));
 
-        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Ir");
-
-        javax.swing.GroupLayout IrAtributosModLayout = new javax.swing.GroupLayout(IrAtributosMod);
-        IrAtributosMod.setLayout(IrAtributosModLayout);
-        IrAtributosModLayout.setHorizontalGroup(
-            IrAtributosModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-        );
-        IrAtributosModLayout.setVerticalGroup(
-            IrAtributosModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        bg.add(IrAtributosMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 130, 40));
+        backButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        backButton.setText("Volver");
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backButtonMouseClicked(evt);
+            }
+        });
+        bg.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,15 +146,36 @@ public class Ventana6 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void IrAtributosModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IrAtributosModMouseClicked
-        Ventana7 f= new Ventana7 ();
-        f.setVisible(true);
+    private void selectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectButtonMouseClicked
+        String name = (String)actTable.getValueAt(actTable.getSelectedRow(), 0);
+        LocalDate date = LocalDate.parse((String)actTable.getValueAt(actTable.getSelectedRow(), 1));
+        LocalTime hour = LocalTime.parse((String)actTable.getValueAt(actTable.getSelectedRow(), 2));
+        Priority priority = Priority.valueOf((String)actTable.getValueAt(actTable.getSelectedRow(), 3));
+        String label = (String)actTable.getValueAt(actTable.getSelectedRow(), 4);
+        
+        Activity toEdit = calendar2.findActivity(name, date, hour, priority, label);
+              
+        Ventana7 e= new Ventana7(calendar2, toEdit);
+        e.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_IrAtributosModMouseClicked
+    }//GEN-LAST:event_selectButtonMouseClicked
+
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
+        Sesion s = new Sesion (calendar2);
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backButtonMouseClicked
+
+    private void filterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterButtonMouseClicked
+        LocalDate selectedDate = datePicker.getDate();
+        if(selectedDate != null){
+            DoubleLinkedList toPrint = calendar2.findByDate(selectedDate);
+            imprimir(toPrint);
+        }else{
+            imprimir(calendar2);
+        }
+
+    }//GEN-LAST:event_filterButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -157,13 +213,26 @@ public class Ventana6 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel IrAtributosMod;
+    private javax.swing.JTable actTable;
+    private javax.swing.JButton backButton;
     private javax.swing.JPanel bg;
-    private javax.swing.JLabel jLabel1;
+    private com.github.lgooddatepicker.components.DatePicker datePicker;
+    private javax.swing.JButton filterButton;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton selectButton;
     // End of variables declaration//GEN-END:variables
+
+    private void imprimir(DoubleLinkedList<Activity> calendar) {
+        DefaultTableModel model = (DefaultTableModel)actTable.getModel();
+        model.setRowCount(0);
+        DoubleNode<Activity> actual = (DoubleNode<Activity>) calendar.getHead();
+        while(actual != null){
+            model.addRow(new Object[]{actual.getValue().getName(), actual.getValue().getDate().toString(),
+                                      actual.getValue().getHour().toString(), actual.getValue().getPriority().toString(),
+                                      actual.getValue().getLabel()});
+            actual = actual.getNext();
+        }
+    }
 }

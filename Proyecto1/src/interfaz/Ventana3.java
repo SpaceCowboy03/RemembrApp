@@ -169,8 +169,8 @@ public class Ventana3 extends javax.swing.JFrame {
         bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 520, 100));
 
         buttonGroup1.add(radiobtnUrgente);
-        radiobtnUrgente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         radiobtnUrgente.setText("Urgente");
+        radiobtnUrgente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         radiobtnUrgente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radiobtnUrgenteActionPerformed(evt);
@@ -179,13 +179,13 @@ public class Ventana3 extends javax.swing.JFrame {
         bg.add(radiobtnUrgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
 
         buttonGroup1.add(radiobtnImportante);
-        radiobtnImportante.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         radiobtnImportante.setText("Importante");
+        radiobtnImportante.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         bg.add(radiobtnImportante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, -1, -1));
 
         buttonGroup1.add(radiobtnPendiente);
-        radiobtnPendiente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         radiobtnPendiente.setText("Pendiente");
+        radiobtnPendiente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         bg.add(radiobtnPendiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, -1, -1));
 
         addAndReturnButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
