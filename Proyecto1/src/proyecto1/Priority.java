@@ -1,4 +1,4 @@
-package Proyecto1;
+package proyecto1;
 
 
 public enum Priority {

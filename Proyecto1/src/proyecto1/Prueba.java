@@ -1,5 +1,6 @@
-package Proyecto1;
+package proyecto1;
 
+import estructuras.DoubleLinkedList;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
