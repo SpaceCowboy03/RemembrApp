@@ -45,16 +45,11 @@ public class Sesion extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Vertareas = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        AgregarTareas = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        BorrarTareas = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ModificarTareas = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         listTaskButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,124 +62,49 @@ public class Sesion extends javax.swing.JFrame {
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, 40));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("¿Qué desea hacer?");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
-
-        Vertareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Vertareas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VertareasMouseClicked(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Ver Tareas");
-
-        javax.swing.GroupLayout VertareasLayout = new javax.swing.GroupLayout(Vertareas);
-        Vertareas.setLayout(VertareasLayout);
-        VertareasLayout.setHorizontalGroup(
-            VertareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VertareasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        VertareasLayout.setVerticalGroup(
-            VertareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VertareasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        bg.add(Vertareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 150, 40));
-
-        AgregarTareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        AgregarTareas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AgregarTareasMouseClicked(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Agregar Tareas");
-
-        javax.swing.GroupLayout AgregarTareasLayout = new javax.swing.GroupLayout(AgregarTareas);
-        AgregarTareas.setLayout(AgregarTareasLayout);
-        AgregarTareasLayout.setHorizontalGroup(
-            AgregarTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AgregarTareasLayout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        AgregarTareasLayout.setVerticalGroup(
-            AgregarTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgregarTareasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        bg.add(AgregarTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 150, 40));
-
-        BorrarTareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        BorrarTareas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BorrarTareasMouseClicked(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Borrar Tareas");
-
-        javax.swing.GroupLayout BorrarTareasLayout = new javax.swing.GroupLayout(BorrarTareas);
-        BorrarTareas.setLayout(BorrarTareasLayout);
-        BorrarTareasLayout.setHorizontalGroup(
-            BorrarTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BorrarTareasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        BorrarTareasLayout.setVerticalGroup(
-            BorrarTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BorrarTareasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        bg.add(BorrarTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 150, -1));
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/SimboloAutismotransparente1.png"))); // NOI18N
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 510, 230));
 
-        ModificarTareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ModificarTareas.addMouseListener(new java.awt.event.MouseAdapter() {
+        listTaskButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        listTaskButton.setText("Ver Tareas");
+        listTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ModificarTareasMouseClicked(evt);
+                listTaskButtonMouseClicked(evt);
             }
         });
+        bg.add(listTaskButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 150, 40));
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Modificar Tareas");
+        addButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addButton.setText("Agregar Tarea");
+        addButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addButtonMouseClicked(evt);
+            }
+        });
+        bg.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 150, 40));
 
-        javax.swing.GroupLayout ModificarTareasLayout = new javax.swing.GroupLayout(ModificarTareas);
-        ModificarTareas.setLayout(ModificarTareasLayout);
-        ModificarTareasLayout.setHorizontalGroup(
-            ModificarTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-        );
-        ModificarTareasLayout.setVerticalGroup(
-            ModificarTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
+        updateButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        updateButton.setText("Modificar Tareas");
+        updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateButtonMouseClicked(evt);
+            }
+        });
+        bg.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 150, 40));
 
-        bg.add(ModificarTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 150, 40));
-
-        listTaskButton.setText("Ver Tareas");
-        bg.add(listTaskButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, -1, -1));
+        deleteButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        deleteButton.setText("Borrar Tareas");
+        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteButtonMouseClicked(evt);
+            }
+        });
+        bg.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,32 +120,29 @@ public class Sesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ModificarTareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModificarTareasMouseClicked
-        Ventana6 e= new Ventana6 ();
-        e.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_ModificarTareasMouseClicked
-
-    private void AgregarTareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarTareasMouseClicked
-        Ventana2 b= new Ventana2 (calendar2);
-        b.setVisible(true);
-        this.setVisible(false);        // TODO add your handling code here:
-    }//GEN-LAST:event_AgregarTareasMouseClicked
-
-    private void VertareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VertareasMouseClicked
-       
+    private void listTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTaskButtonMouseClicked
         Ventana5 d= new Ventana5 (calendar2);
         d.setVisible(true);
         this.setVisible(false);
-        
-        
-    }//GEN-LAST:event_VertareasMouseClicked
+    }//GEN-LAST:event_listTaskButtonMouseClicked
 
-    private void BorrarTareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BorrarTareasMouseClicked
+    private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
+        Ventana2 b= new Ventana2 (calendar2);
+        b.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_addButtonMouseClicked
+
+    private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
+        Ventana6 e= new Ventana6 ();
+        e.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_updateButtonMouseClicked
+
+    private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
         Ventana8 g= new Ventana8 (calendar2);
         g.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_BorrarTareasMouseClicked
+    }//GEN-LAST:event_deleteButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -635,18 +552,13 @@ public class Sesion extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel AgregarTareas;
-    private javax.swing.JPanel BorrarTareas;
-    private javax.swing.JPanel ModificarTareas;
-    private javax.swing.JPanel Vertareas;
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel bg;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton listTaskButton;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,9 @@ import java.time.LocalTime;
 import java.util.Scanner;
 import proyecto1.Activity;
 import estructuras.DoubleLinkedList;
+import java.awt.Color;
+import java.util.Calendar;
+import java.util.Date;
 import proyecto1.Event;
 import proyecto1.Priority;
 
@@ -46,28 +49,30 @@ public class Ventana3 extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
+        timePicker = new com.github.lgooddatepicker.components.TimePicker();
+        datePicker = new com.github.lgooddatepicker.components.DatePicker();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtTarea = new javax.swing.JTextField();
-        txtFecha = new javax.swing.JTextField();
-        txtHora = new javax.swing.JTextField();
+        taskTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtEtiqueta = new javax.swing.JTextField();
+        labelTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtDesubi = new javax.swing.JTextArea();
+        locationTextField = new javax.swing.JTextArea();
         radiobtnUrgente = new javax.swing.JRadioButton();
         radiobtnImportante = new javax.swing.JRadioButton();
         radiobtnPendiente = new javax.swing.JRadioButton();
-        btnAgregaryVolver = new javax.swing.JButton();
+        addAndReturnButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setBackground(new java.awt.Color(51, 153, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        bg.add(timePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 230, 30));
+        bg.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 230, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
@@ -89,53 +94,53 @@ public class Ventana3 extends javax.swing.JFrame {
         jLabel7.setText("Ingrese la Fecha:");
         bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        txtTarea.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        txtTarea.setText("Ir al gimnasio");
-        txtTarea.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        taskTextField.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        taskTextField.setForeground(new java.awt.Color(204, 204, 204));
+        taskTextField.setText("Nombre de la tarea");
+        taskTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                taskTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                taskTextFieldFocusLost(evt);
+            }
+        });
+        taskTextField.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                txtTareaCaretPositionChanged(evt);
+                taskTextFieldCaretPositionChanged(evt);
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
-        txtTarea.addActionListener(new java.awt.event.ActionListener() {
+        taskTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTareaActionPerformed(evt);
+                taskTextFieldActionPerformed(evt);
             }
         });
-        bg.add(txtTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 230, 30));
-
-        txtFecha.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        txtFecha.setText("YYYY-MM-DD");
-        txtFecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaActionPerformed(evt);
-            }
-        });
-        bg.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 230, 30));
-
-        txtHora.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        txtHora.setText("HH:MM:SS");
-        txtHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHoraActionPerformed(evt);
-            }
-        });
-        bg.add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 230, 30));
+        bg.add(taskTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 230, 30));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
         jLabel11.setText("Ponga una etiqueta:");
         bg.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
-        txtEtiqueta.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        txtEtiqueta.setText("Gym");
-        txtEtiqueta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEtiquetaActionPerformed(evt);
+        labelTextField.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        labelTextField.setForeground(new java.awt.Color(204, 204, 204));
+        labelTextField.setText("Etiqueta");
+        labelTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                labelTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                labelTextFieldFocusLost(evt);
             }
         });
-        bg.add(txtEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 230, 30));
+        labelTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                labelTextFieldActionPerformed(evt);
+            }
+        });
+        bg.add(labelTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 230, 30));
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
@@ -146,11 +151,20 @@ public class Ventana3 extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/SimboloAutismotransparente1.png"))); // NOI18N
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, 230));
 
-        txtDesubi.setColumns(20);
-        txtDesubi.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        txtDesubi.setRows(5);
-        txtDesubi.setText("Descripción");
-        jScrollPane1.setViewportView(txtDesubi);
+        locationTextField.setColumns(20);
+        locationTextField.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        locationTextField.setForeground(new java.awt.Color(204, 204, 204));
+        locationTextField.setRows(5);
+        locationTextField.setText("Descripción");
+        locationTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                locationTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                locationTextFieldFocusLost(evt);
+            }
+        });
+        jScrollPane1.setViewportView(locationTextField);
 
         bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 520, 100));
 
@@ -174,20 +188,14 @@ public class Ventana3 extends javax.swing.JFrame {
         radiobtnPendiente.setText("Pendiente");
         bg.add(radiobtnPendiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, -1, -1));
 
-        btnAgregaryVolver.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        btnAgregaryVolver.setText("Agregar y volver al menú inicial");
-        btnAgregaryVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAgregaryVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+        addAndReturnButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addAndReturnButton.setText("Agregar y Volver");
+        addAndReturnButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregaryVolverMouseClicked(evt);
+                addAndReturnButtonMouseClicked(evt);
             }
         });
-        btnAgregaryVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregaryVolverActionPerformed(evt);
-            }
-        });
-        bg.add(btnAgregaryVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 330, 30));
+        bg.add(addAndReturnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,34 +211,23 @@ public class Ventana3 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraActionPerformed
+    private void taskTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtHoraActionPerformed
+    }//GEN-LAST:event_taskTextFieldActionPerformed
 
-    private void txtTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTareaActionPerformed
+    private void taskTextFieldCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_taskTextFieldCaretPositionChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTareaActionPerformed
+    }//GEN-LAST:event_taskTextFieldCaretPositionChanged
 
-    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+    private void labelTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaActionPerformed
-
-    private void txtTareaCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtTareaCaretPositionChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTareaCaretPositionChanged
-
-    private void txtEtiquetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEtiquetaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEtiquetaActionPerformed
+    }//GEN-LAST:event_labelTextFieldActionPerformed
 
     private void radiobtnUrgenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtnUrgenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radiobtnUrgenteActionPerformed
 
-    private void btnAgregaryVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregaryVolverMouseClicked
-        // TODO add your handling code here:
-        
-        
+    private void addAndReturnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addAndReturnButtonMouseClicked
         int prioridad = 0;
         //String Description;
         
@@ -241,11 +238,13 @@ public class Ventana3 extends javax.swing.JFrame {
         //DoubleLinkedList<Activity> calendar;
         //calendar = new DoubleLinkedList<Activity>();
 
-        String name = txtTarea.getText();
-        String label = txtEtiqueta.getText();
-        String date = txtFecha.getText();
-        String hour = txtHora.getText();
-        String Ubication = txtDesubi.getText();
+        String name = taskTextField.getText();
+        String label = labelTextField.getText();
+        //String date = txtFecha.getText();
+        LocalDate date = datePicker.getDate();
+        //String hour = txtHora.getText();
+        LocalTime hour = timePicker.getTime();
+        String Ubication = locationTextField.getText();
         
 
         if (radiobtnUrgente.isSelected() == true)
@@ -257,21 +256,57 @@ public class Ventana3 extends javax.swing.JFrame {
         
 
         if (Ubication == null) {
-            calendar2.pushBack(new Event(name, LocalDate.parse(date), LocalTime.parse(hour), Priority.values()[prioridad], label));
+            calendar2.pushBack(new Event(name, date, hour, Priority.values()[prioridad], label));
         } else {
-            calendar2.pushBack(new Event(name, LocalDate.parse(date), LocalTime.parse(hour), Priority.values()[prioridad], label, Ubication));
+            calendar2.pushBack(new Event(name, date, hour, Priority.values()[prioridad], label, Ubication));
         }
         
         Sesion s = new Sesion (calendar2);
         s.setVisible(true);
         this.setVisible(false); 
+    }//GEN-LAST:event_addAndReturnButtonMouseClicked
 
-        
-    }//GEN-LAST:event_btnAgregaryVolverMouseClicked
+    private void taskTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_taskTextFieldFocusGained
+        if(taskTextField.getText().equals("Nombre de la tarea")){
+            taskTextField.setText("");
+            taskTextField.setForeground(new java.awt.Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_taskTextFieldFocusGained
 
-    private void btnAgregaryVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregaryVolverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregaryVolverActionPerformed
+    private void taskTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_taskTextFieldFocusLost
+        if(taskTextField.getText().equals("")){
+            taskTextField.setText("Nombre de la tarea");
+            taskTextField.setForeground(new java.awt.Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_taskTextFieldFocusLost
+
+    private void labelTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_labelTextFieldFocusGained
+        if(labelTextField.getText().equals("Etiqueta")){
+            labelTextField.setText("");
+            labelTextField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_labelTextFieldFocusGained
+
+    private void labelTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_labelTextFieldFocusLost
+        if(labelTextField.getText().equals("")){
+            labelTextField.setText("Etiqueta");
+            labelTextField.setForeground(new java.awt.Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_labelTextFieldFocusLost
+
+    private void locationTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_locationTextFieldFocusGained
+        if(locationTextField.getText().equals("Descripción")){
+            locationTextField.setText("");
+            locationTextField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_locationTextFieldFocusGained
+
+    private void locationTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_locationTextFieldFocusLost
+        if(locationTextField.getText().equals("")){
+            locationTextField.setText("Descripción");
+            locationTextField.setForeground(new java.awt.Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_locationTextFieldFocusLost
 
     /**
      * @param args the command line arguments
@@ -309,9 +344,10 @@ public class Ventana3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addAndReturnButton;
     private javax.swing.JPanel bg;
-    private javax.swing.JButton btnAgregaryVolver;
     private javax.swing.ButtonGroup buttonGroup1;
+    private com.github.lgooddatepicker.components.DatePicker datePicker;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -320,13 +356,12 @@ public class Ventana3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField labelTextField;
+    private javax.swing.JTextArea locationTextField;
     private javax.swing.JRadioButton radiobtnImportante;
     private javax.swing.JRadioButton radiobtnPendiente;
     private javax.swing.JRadioButton radiobtnUrgente;
-    private javax.swing.JTextArea txtDesubi;
-    private javax.swing.JTextField txtEtiqueta;
-    private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtHora;
-    private javax.swing.JTextField txtTarea;
+    private javax.swing.JTextField taskTextField;
+    private com.github.lgooddatepicker.components.TimePicker timePicker;
     // End of variables declaration//GEN-END:variables
 }
