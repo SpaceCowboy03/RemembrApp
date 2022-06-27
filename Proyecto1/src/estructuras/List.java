@@ -70,6 +70,22 @@ public abstract class List<Item> {
             System.out.println("No hay actividades para este dia");
         }
     }
+    
+    public DoubleLinkedList<Activity> findByDate(LocalDate d){
+        LocalDate date = d;
+        DoubleLinkedList<Activity> selByDate = new DoubleLinkedList<>();
+        Node<Item> iter = this.head;
+        //System.out.println(date.toString());
+        while (iter != null){
+            if(((Activity)iter.getValue()).getDate().equals(date)){
+                //System.out.println("encontro coincidencia");
+                selByDate.pushBack((Activity)iter.getValue());
+            }
+            iter = iter.next;
+        }
+        return selByDate;
+    }
+    
     //Find por nombre
     public Activity findActivity(String name){ //recibe un string
         

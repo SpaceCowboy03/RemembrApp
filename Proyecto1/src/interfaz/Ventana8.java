@@ -10,6 +10,8 @@ import java.util.Scanner;
 import proyecto1.Activity;
 import estructuras.DoubleLinkedList;
 import estructuras.DoubleNode;
+import java.time.LocalDate;
+import javax.swing.table.DefaultTableModel;
 import proyecto1.OrderedActListHandler;
 
 /**
@@ -27,27 +29,36 @@ public class Ventana8 extends javax.swing.JFrame {
         initComponents();
         calendar2 = calendar;
         new OrderedActListHandler<Activity>().order(calendar2);
-        imprimir();
+        imprimir(calendar2);
     }
 
     public Ventana8() {
         initComponents();
     }
 
-    public void imprimir() {
-        DoubleNode actual = (DoubleNode) calendar2.getHead();
-        String valoresdelalista = "";
-
-        while (actual != null) {
-
-            valoresdelalista += "Actividad: " + ((Activity) actual.getValue()).getName()
-                    + " \nFecha: " + ((Activity) actual.getValue()).getDate() + " Hora: " + ((Activity) actual.getValue()).getHour() + " \nPrioridad: " + ((Activity) actual.getValue()).getPriority()
-                    + " \nEtiqueta: " + ((Activity) actual.getValue()).getLabel() + "\n-----------\n";
-
-            actual = (DoubleNode) actual.getNext();
-
+    public void imprimir(DoubleLinkedList<Activity> calendar) {
+//        DoubleNode actual = (DoubleNode) calendar2.getHead();
+//        String valoresdelalista = "";
+//
+//        while (actual != null) {
+//
+//            valoresdelalista += "Actividad: " + ((Activity) actual.getValue()).getName()
+//                    + " \nFecha: " + ((Activity) actual.getValue()).getDate() + " Hora: " + ((Activity) actual.getValue()).getHour() + " \nPrioridad: " + ((Activity) actual.getValue()).getPriority()
+//                    + " \nEtiqueta: " + ((Activity) actual.getValue()).getLabel() + "\n-----------\n";
+//
+//            actual = (DoubleNode) actual.getNext();
+//
+//        }
+        //this.txtArea2.setText(valoresdelalista);
+        DefaultTableModel model = (DefaultTableModel)actTable.getModel();
+        model.setRowCount(0);
+        DoubleNode<Activity> actual = (DoubleNode<Activity>) calendar.getHead();
+        while(actual != null){
+            model.addRow(new Object[]{actual.getValue().getName(), actual.getValue().getDate().toString(),
+                                      actual.getValue().getHour().toString(), actual.getValue().getPriority().toString(),
+                                      actual.getValue().getLabel()});
+            actual = actual.getNext();
         }
-        this.txtArea2.setText(valoresdelalista);
 
     }
 
@@ -61,50 +72,81 @@ public class Ventana8 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         bg = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtEliminar = new javax.swing.JTextField();
-        txtArea2 = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        filterButton = new javax.swing.JButton();
+        datePicker = new com.github.lgooddatepicker.components.DatePicker();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        actTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setBackground(new java.awt.Color(51, 153, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("tarea que quiere eliminar:");
-        bg.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 330, 40));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("Seleccione la tarea a eliminar");
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Escriba el nombre de la ");
-        bg.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 290, 40));
-
-        txtEliminar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        txtEliminar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtEliminar.setText("Cocinar");
-        txtEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEliminarActionPerformed(evt);
+        filterButton.setText("Filtrar");
+        filterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterButtonMouseClicked(evt);
             }
         });
-        bg.add(txtEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 280, 40));
+        bg.add(filterButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, -1));
+        bg.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
 
-        txtArea2.setEditable(false);
-        txtArea2.setColumns(20);
-        txtArea2.setRows(5);
-        bg.add(txtArea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 530, 330));
+        actTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Actividad", "Fecha", "Hora", "Prioridad", "Etiqueta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        actTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(actTable);
+
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 500, 360));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/SimboloAutismotransparente1.png"))); // NOI18N
-        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 510, 230));
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 510, 230));
 
         backButton.setText("Volver");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +154,7 @@ public class Ventana8 extends javax.swing.JFrame {
                 backButtonMouseClicked(evt);
             }
         });
-        bg.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 110, 40));
+        bg.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 110, 40));
 
         deleteButton.setText("Eliminar");
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,7 +162,7 @@ public class Ventana8 extends javax.swing.JFrame {
                 deleteButtonMouseClicked(evt);
             }
         });
-        bg.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, 110, 40));
+        bg.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,10 +180,6 @@ public class Ventana8 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEliminarActionPerformed
-
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
         Sesion s = new Sesion (calendar2);
         s.setVisible(true);
@@ -150,23 +188,34 @@ public class Ventana8 extends javax.swing.JFrame {
 
     private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
         String eliminarD;
-        if (!calendar2.empty()) {
-            eliminarD = txtEliminar.getText();
-            if (calendar2.findActivity(eliminarD) != null) {
-                calendar2.remove(calendar2.findActivity(eliminarD));
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-                System.out.println("Tarea eliminada con éxito!");
-            } else {
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-                System.out.println("No hay ninguna actividad con ese nombre. Revise mayúsculas, minúsculas y espacios");
-            }
-        } else {
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            System.out.println("No hay ninguna actividad para eliminar.");
-        }
+//        if (!calendar2.empty()) {
+//            eliminarD = txtEliminar.getText();
+//            if (calendar2.findActivity(eliminarD) != null) {
+//                calendar2.remove(calendar2.findActivity(eliminarD));
+//                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+//                System.out.println("Tarea eliminada con éxito!");
+//            } else {
+//                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+//                System.out.println("No hay ninguna actividad con ese nombre. Revise mayúsculas, minúsculas y espacios");
+//            }
+//        } else {
+//            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+//            System.out.println("No hay ninguna actividad para eliminar.");
+//        }
         new OrderedActListHandler<Activity>().order(calendar2);
-        imprimir();
+        imprimir(calendar2);
     }//GEN-LAST:event_deleteButtonMouseClicked
+
+    private void filterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterButtonMouseClicked
+        LocalDate selectedDate = datePicker.getDate();
+        if(selectedDate != null){
+            DoubleLinkedList toPrint = calendar2.findByDate(selectedDate);
+            imprimir(toPrint);
+        }else{
+            imprimir(calendar2);
+        }
+        
+    }//GEN-LAST:event_filterButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -204,13 +253,16 @@ public class Ventana8 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable actTable;
     private javax.swing.JButton backButton;
     private javax.swing.JPanel bg;
+    private com.github.lgooddatepicker.components.DatePicker datePicker;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JButton filterButton;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextArea txtArea2;
-    private javax.swing.JTextField txtEliminar;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
