@@ -3,7 +3,9 @@ package estructuras;
 
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import proyecto1.Activity;
+import proyecto1.Priority;
 
 
 public abstract class List<Item> {
@@ -95,6 +97,22 @@ public abstract class List<Item> {
                 return ((Activity)iter.getValue());
                 
                 
+            }
+            iter = iter.next;
+        }
+        return null;
+        
+    }
+    
+    //Find por nombre, fecha, hora, prioridad, label
+    public Activity findActivity(String name, LocalDate date, LocalTime hour, Priority priority, String label){ 
+        
+        Node<Item> iter = this.head;
+        while (iter != null){
+            if(((Activity)iter.getValue()).getName().equals(name) && ((Activity)iter.getValue()).getDate().equals(date)
+                && ((Activity)iter.getValue()).getHour().equals(hour) && ((Activity)iter.getValue()).getPriority() == priority
+                && ((Activity)iter.getValue()).getLabel().equals(label)){
+                return ((Activity)iter.getValue());            
             }
             iter = iter.next;
         }

@@ -11,8 +11,10 @@ import proyecto1.Activity;
 import estructuras.DoubleLinkedList;
 import estructuras.DoubleNode;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.table.DefaultTableModel;
 import proyecto1.OrderedActListHandler;
+import proyecto1.Priority;
 
 /**
  *
@@ -187,7 +189,7 @@ public class Ventana8 extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonMouseClicked
 
     private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
-        String eliminarD;
+        //String eliminarD;
 //        if (!calendar2.empty()) {
 //            eliminarD = txtEliminar.getText();
 //            if (calendar2.findActivity(eliminarD) != null) {
@@ -202,6 +204,16 @@ public class Ventana8 extends javax.swing.JFrame {
 //            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 //            System.out.println("No hay ninguna actividad para eliminar.");
 //        }
+        DefaultTableModel model = (DefaultTableModel)actTable.getModel();
+        String name = (String)actTable.getValueAt(actTable.getSelectedRow(), 0);
+        LocalDate date = LocalDate.parse((String)actTable.getValueAt(actTable.getSelectedRow(), 1));
+        LocalTime hour = LocalTime.parse((String)actTable.getValueAt(actTable.getSelectedRow(), 2));
+        Priority priority = Priority.valueOf((String)actTable.getValueAt(actTable.getSelectedRow(), 3));
+        String label = (String)actTable.getValueAt(actTable.getSelectedRow(), 4);
+        
+        Activity toDel = calendar2.findActivity(name, date, hour, priority, label);
+        calendar2.remove(toDel);
+        
         new OrderedActListHandler<Activity>().order(calendar2);
         imprimir(calendar2);
     }//GEN-LAST:event_deleteButtonMouseClicked
